@@ -14,14 +14,18 @@ const create = (req, res) => {
             name,
             contact,
             details,
-            file_url
+            file_url,
+            lat,
+            lng
         )
         VALUES
         (
             '${req.body.name}',
             '${req.body.contact}',
             '${req.body.details}',
-            '${req.body.file_url}'
+            '${req.body.file_url}',
+            '${req.body.lat}',
+            '${req.body.lng}'
         )
     `);
     res.status(200).json({ success: "true" });

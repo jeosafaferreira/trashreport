@@ -2,7 +2,6 @@ import pg from "pg";
 
 const { Pool } = pg;
 
-console.log(process.env.DB_HOST, process.env.DB_NAME);
 export const con = new Pool({
     host: process.env.DB_HOST || "34.207.184.100",
     port: process.env.DB_PORT || "5432",

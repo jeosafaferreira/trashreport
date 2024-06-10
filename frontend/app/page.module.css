@@ -19,12 +19,17 @@
     margin-right: 5px;
 }
 
+.imgBack {
+    width: 30px;
+    height: 30px;
+}
+
 .divForm {
     background-color: white;
     margin: 16px 0;
     padding: 30px;
     width: 500px;
-    min-height: 470px;
+    min-height: 380px;
     border-radius: 20px;
     box-shadow: 0px 0px 40px 10px rgb(40, 40, 40);
     overflow-x: auto;

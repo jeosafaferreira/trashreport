@@ -8,25 +8,43 @@ export default function Home() {
     const [name, setName] = useState("");
     const [contact, setContact] = useState("");
     const [details, setDetails] = useState("");
-    const [fileUrl, setFileUrl] = useState("");
+    const [fileName, setFileName] = useState("");
+    const [mimetype, setMimetype] = useState("");
+    const [fileData, setFileData] = useState("");
     const [sent, setSent] = useState(false);
     const [marker, setMarker] = useState();
 
     const enviar = () => {
-        let data = {
-            name: name,
-            contact: contact,
-            details: details,
-            fileUrl: fileUrl,
+        const data = {
+            name,
+            contact,
+            details,
+            fileName,
+            mimetype,
+            fileData,
             lat: marker.lat,
             lng: marker.lng,
         };
+
         axios.post("http://localhost:3333/reports", data);
         setSent(true);
     };
 
     const addMarker = (e) => {
         setMarker(e.detail.latLng);
+    };
+
+    const onFileChange = (e) => {
+        const file = e.target.files[0];
+        console.log(file);
+        setFileName(file.name);
+        setMimetype(file.type);
+        const reader = new FileReader();
+
+        reader.addEventListener("load", () => {
+            setFileData(reader.result);
+        });
+        reader.readAsDataURL(file);
     };
 
     return (
@@ -62,7 +80,7 @@ export default function Home() {
                                 <label className={styles.label}>Foto:</label>
                             </div>
                             <div className={styles.row}>
-                                <input type="file" />
+                                <input type="file" value={fileData?.filename} onChange={onFileChange} />
                             </div>
 
                             <div className={styles.row}>
